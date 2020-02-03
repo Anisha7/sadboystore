@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap');
+
 .App {
   text-align: center;
 }
@@ -24,7 +26,8 @@
 }
 
 html, body, .App, .App-header, .App-intro>div {
-  height: 100%
+  height: 100%;
+  font-family: 'Red Hat Text', sans-serif;
 }
 
 .wrapper {
