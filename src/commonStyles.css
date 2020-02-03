@@ -1,0 +1,21 @@
+* {
+    font-family:  Helvetica, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #242121;
+}
+
+button {
+    margin: 30px 30px 0;
+    padding: 15px 30px;
+    border-radius: 13px;
+    border: 3px solid #242121;
+    font-size: 16px;
+    color: #242121;
+    background: transparent;
+}
+
+.homeIcon {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+}
