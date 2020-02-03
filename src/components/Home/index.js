@@ -22,7 +22,7 @@ class Home extends Component {
             return <Redirect to="/store" />
         }
         return (
-        <div class="container" onClick={() => this.setRedirectToStore()}>
+        <div class="home-container" onClick={() => this.setRedirectToStore()}>
             <div>
                 <FontAwesomeIcon className="icon" icon={ faFrown } size="8x" />
             </div>
