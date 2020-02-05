@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
 import "./styles.css";
 
@@ -30,6 +32,12 @@ class Item extends Component {
     this.setState({ selectedQts: e.value });
   }
 
+  addItemToCart(itemId) {
+    console.log("Adding item to cart")
+    // TODO: check that color, size, and qty is chosen
+    // TODO: add item to cart
+  }
+
   render() {
     // const { src, price, name, colors, sizes } = this.props
 
@@ -40,6 +48,7 @@ class Item extends Component {
     const colors = ["maroon", "white", "black"];
     const sizes = ["small", "medium", "large", "extra-large"];
     const qts = ["1", "2", "3", "4", "5"];
+    const itemId = "01203aerf"
     // testing data ends
     return (
       <div className="item-container">
@@ -71,6 +80,11 @@ class Item extends Component {
           value={this.state.selectedQts}
           placeholder="Select an option"
         />
+        <button onClick={() => this.addItemToCart(itemId)} className="addToCart">
+            <p>ADD TO CART</p>
+            <FontAwesomeIcon className="icon" icon={ faCartPlus } size="2x" />
+            {/* TODO: add cart icon */}
+        </button>
       </div>
     );
   }

@@ -24,3 +24,20 @@
 .dropdown {
     border: none;
 }
+
+.addToCart {
+    border: 2px solid #202020;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    background: none;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.addToCart p {
+    font-size: 16px;
+    font-weight: bold;
+}
