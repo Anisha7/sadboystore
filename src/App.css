@@ -33,4 +33,5 @@ html, body, .App, .App-header, .App-intro>div {
 .wrapper {
   height: 100%;
   margin: 20px;
+  color: "#191A19";
 }

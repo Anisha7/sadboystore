@@ -1,0 +1,26 @@
+
+.item-container img {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+}
+
+.item-container .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.item-container .price {
+    font-weight: medium;
+    font-size: 20px;
+}
+
+.item-container .name {
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.dropdown {
+    border: none;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar';
-
+import Item from './components/Item';
 import './styles.css';
 
 class Store extends Component {
@@ -14,7 +14,7 @@ class Store extends Component {
         <div>
             <Navbar />
             <div className="store-container">
-            <p className="text">hello</p>
+                <Item />
             </div>
         </div>
         )
