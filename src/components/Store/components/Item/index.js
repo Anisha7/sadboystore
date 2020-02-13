@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus, faShareSquare } from '@fortawesome/free-solid-svg-icons'
 
 import "./styles.css";
 
@@ -39,20 +39,15 @@ class Item extends Component {
   }
 
   render() {
-    // const { src, price, name, colors, sizes } = this.props
+    const { src, price, name, colors, sizes, qts, itemId } = this.props
 
-    // hard coded data for testing
-    const src = "https://via.placeholder.com/250";
-    const price = "$00.00";
-    const name = "Item name";
-    const colors = ["maroon", "white", "black"];
-    const sizes = ["small", "medium", "large", "extra-large"];
-    const qts = ["1", "2", "3", "4", "5"];
-    const itemId = "01203aerf"
-    // testing data ends
     return (
       <div className="item-container">
-        <img src={src} alt="" />
+        {/* TODO: onclick for share icon */}
+        <FontAwesomeIcon className="item-image-icon" icon={ faShareSquare } size="2x" />
+        <div className="item-image">
+            <img src={src} alt="" />
+        </div>
         <div className="flex">
           <p className="price">{price}</p>
           <p className="name">{name}</p>
@@ -60,14 +55,14 @@ class Item extends Component {
         <div className="flex">
           <Dropdown
             controlClassName="dropdown"
-            options={colors}
+            options={colors ? colors : []}
             onChange={this._onSelectColor}
             value={this.state.selectedColor}
             placeholder="Select an option"
           />
           <Dropdown
             controlClassName="dropdown"
-            options={sizes}
+            options={sizes ? sizes : []}
             onChange={this._onSelectSize}
             value={this.state.selectedSize}
             placeholder="Select an option"
@@ -75,7 +70,7 @@ class Item extends Component {
         </div>
         <Dropdown
           controlClassName="dropdown"
-          options={qts}
+          options={qts ? qts : []}
           onChange={this._onSelectQts}
           value={this.state.selectedQts}
           placeholder="Select an option"
@@ -83,7 +78,6 @@ class Item extends Component {
         <button onClick={() => this.addItemToCart(itemId)} className="addToCart">
             <p>ADD TO CART</p>
             <FontAwesomeIcon className="icon" icon={ faCartPlus } size="2x" />
-            {/* TODO: add cart icon */}
         </button>
       </div>
     );
