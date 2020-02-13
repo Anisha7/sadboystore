@@ -12,19 +12,26 @@ class Store extends Component {
 
     this.componentDidMount = this.componentDidMount.bind(this)
     this.fetchItems = this.fetchItems.bind(this);
-    this.items = undefined
   }
 
   componentDidMount() {
-    this.items = this.fetchItems();
-    this.setState({items: this.items})
-    console.log(this.state.items)
+    this.fetchItems().then(items => {
+        this.setState({items: items})
+    });
   }
 
-  fetchItems() {
-    console.log("HERE");
+  async fetchItems() {
+    let items;
     // fetch items
-    // setstate
+    await fetch("/item/")
+        .then(res => res.json)
+        .then(json => {
+            items = json
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    console.log(items)
 
     // hardcoded:
     const src = "https://via.placeholder.com/250";
@@ -35,11 +42,6 @@ class Store extends Component {
     const qts = ["1", "2", "3", "4", "5"];
     const itemId = "01203aerf";
     const data = [{ src, price, name, colors, sizes, qts, itemId }];
-    // console.log(data)
-    // this.setState({ items: data })
-    // this.state.items = data
-    // console.log(this.state.items)
-    // testing data ends
 
     return data;
   }
