@@ -47,3 +47,16 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+.Dropdown-disabled {
+    color: lightgray;
+}
+
+.item-container input {
+    padding: 10px;
+    font-size: 16px;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}

@@ -16,6 +16,11 @@ class Store extends Component {
 
   componentDidMount() {
     this.fetchItems().then(items => {
+        // filter items by name
+        // const itemSet = new Set()
+        // items.forEach(item => {
+        //     itemSet.add(item.name)
+        // })
         this.setState({items: items})
     });
   }
@@ -24,9 +29,9 @@ class Store extends Component {
     let items;
     // fetch items
     await fetch("/item/")
-        .then(res => res.json)
+        .then(res => res.json())
         .then(json => {
-            items = json
+            items = json.data
         })
         .catch(err => {
             console.log(err)
@@ -34,16 +39,16 @@ class Store extends Component {
     console.log(items)
 
     // hardcoded:
-    const src = "https://via.placeholder.com/250";
-    const price = "$00.00";
-    const name = "Item name";
-    const colors = ["maroon", "white", "black"];
-    const sizes = ["small", "medium", "large", "extra-large"];
-    const qts = ["1", "2", "3", "4", "5"];
-    const itemId = "01203aerf";
-    const data = [{ src, price, name, colors, sizes, qts, itemId }];
+    // const src = "https://via.placeholder.com/250";
+    // const price = "$00.00";
+    // const name = "Item name";
+    // const cost = ["maroon", "white", "black"];
+    // const sizes = ["small", "medium", "large", "extra-large"];
+    // const qts = ["1", "2", "3", "4", "5"];
+    // const itemId = "01203aerf";
+    // const data = [{ src, price, name, cost, sizes, qts, itemId }];
 
-    return data;
+    return items;
   }
 
   render() {
@@ -53,16 +58,17 @@ class Store extends Component {
         <Navbar />
         <div className="store-container">
           {this.state.items.map(
-                ({ src, price, name, colors, sizes, qts, itemId }) => (
+                ({ public_id, name, piece, cost, color, size, avalaible, src}, i) => (
                   <Item
-                    key={itemId}
-                    src={src}
-                    price={price}
+                    key={`${i}-${name}`}
+                    public_id={public_id}
                     name={name}
-                    colors={colors}
-                    sizes={sizes}
-                    qts={qts}
-                    itemId={itemId}
+                    // piece={piece}
+                    cost={cost}
+                    // color={color}
+                    // size={size}
+                    // avalaible={avalaible}
+                    // src={src}
                   />
                 )
               )}
