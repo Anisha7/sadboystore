@@ -99,6 +99,7 @@ class Item extends Component {
     return (
       <div>
         <Navbar />
+        <div className="container">
         <div className="item-container">
           {/* TODO: onclick for share icon */}
           <FontAwesomeIcon
@@ -159,6 +160,7 @@ class Item extends Component {
             <p>ADD TO CART</p>
             <FontAwesomeIcon className="icon" icon={faCartPlus} size="2x" />
           </button>
+        </div>
         </div>
       </div>
     );
