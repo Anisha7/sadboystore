@@ -1,0 +1,62 @@
+
+.item-container img {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+}
+
+.item-image-icon {
+    position: relative;
+    top: 40px;
+    left: 210px;
+}
+
+.item-container .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.item-container .price {
+    font-weight: medium;
+    font-size: 20px;
+}
+
+.item-container .name {
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.dropdown {
+    border: none;
+}
+
+.addToCart {
+    border: 2px solid #202020;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    background: none;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.addToCart p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.Dropdown-disabled {
+    color: lightgray;
+}
+
+.item-container input {
+    padding: 10px;
+    font-size: 16px;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}

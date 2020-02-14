@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import Home from './components/Home'
 import Store from './components/Store'
+import Item from './components/Item'
 
 class App extends Component {
 
@@ -15,9 +16,13 @@ class App extends Component {
                   <Route exact path="/">
                     <Home />
                   </Route>
-                  <Route exact path="/store">
+                  <Route path="/store">
                     <Store />
                   </Route>
+                  {/* <Route path="/store/:item">
+                    <Item />
+                  </Route> */}
+                  <Route path="/item/:item" component={Item} />
               </Switch>
             </Router>
           </div>

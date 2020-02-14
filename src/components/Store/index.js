@@ -16,11 +16,6 @@ class Store extends Component {
 
   componentDidMount() {
     this.fetchItems().then(items => {
-        // filter items by name
-        // const itemSet = new Set()
-        // items.forEach(item => {
-        //     itemSet.add(item.name)
-        // })
         this.setState({items: items})
     });
   }
@@ -40,14 +35,14 @@ class Store extends Component {
 
     // hardcoded:
     // const src = "https://via.placeholder.com/250";
-    // const price = "$00.00";
+    // const cost = 0;
     // const name = "Item name";
-    // const cost = ["maroon", "white", "black"];
+    // const colors = ["maroon", "white", "black"];
     // const sizes = ["small", "medium", "large", "extra-large"];
     // const qts = ["1", "2", "3", "4", "5"];
     // const itemId = "01203aerf";
-    // const data = [{ src, price, name, cost, sizes, qts, itemId }];
-
+    // const data = [{ src, name, cost, sizes, qts, itemId }];
+    //     return data
     return items;
   }
 
