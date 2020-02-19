@@ -5,26 +5,16 @@ import "./styles.css";
 class QuantityInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: 0
-    };
-  }
-
-  componentWillReceiveProps() {
-    this.setState({value: this.props.qty})
-    console.log("VALUE: ", this.state.value,"QTY: ", this.props.qty)
   }
 
   subtract() {
     if (this.props.qty > 0) {
-        this.props.updateState(this.state.value - 1)
-        this.setState({value : this.props.qty})
+        this.props.updateState(this.props.qty - 1)
     }
   }
 
   add() {
-    this.props.updateState(this.state.value + 1)
-    this.setState({value : this.props.qty})
+    this.props.updateState(this.props.qty + 1)
   }
 
   render() {
@@ -42,7 +32,7 @@ class QuantityInput extends Component {
           min="1"
           max=""
           name="quantity"
-          value={this.state.value}
+          value={this.props.qty}
           title="Qty"
           class="input-text qty text"
           size="4"

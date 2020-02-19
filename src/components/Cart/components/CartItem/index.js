@@ -50,9 +50,7 @@ class CartItem extends Component {
   }
 
   _onSelectQts(value) {
-    console.log(value)
     this.setState({ selectedQty: value });
-    console.log(this.state.selectedQty)
     // TODO: update local storage with this new item
     // TODO: update items state array with this new item
   }
