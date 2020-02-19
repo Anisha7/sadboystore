@@ -1,0 +1,24 @@
+.cartitem-container {
+    display: flex
+}
+
+.cartitem-container img {
+    width: 33vw;
+    height: 33vw;
+}
+
+.cartitem-container .content {
+    margin-left: 10px;
+}
+
+.cartitem-container .content .price {
+    /* font-weight: regular; */
+    font-size: 20px;
+    margin: 0 0 0 10px;
+}
+
+.cartitem-container .content .name {
+    font-weight: lighter;
+    font-size: 16px;
+    margin: 10px 0 0 10px;
+}

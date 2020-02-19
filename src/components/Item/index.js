@@ -5,6 +5,7 @@ import "react-dropdown/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
+import { fetchItemInstances } from '../../helpers/items'
 import "./styles.css";
 
 class Item extends Component {
@@ -25,32 +26,32 @@ class Item extends Component {
   }
 
   componentDidMount() {
-    this.fetchItemInstances().then(items => {
+    // TODO: test this works
+    fetchItemInstances(this.props.name).then(items => {
       this.setState({ item: items });
       this.setState({ name: items[0].name });
       this.setState({ cost: items[0].cost });
     });
   }
 
-  async fetchItemInstances() {
-    let items;
-    // fetch items
-    await fetch(`/item/${this.props.location.state.name}`)
-      .then(res => res.json())
-      .then(json => {
-        items = json.data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    console.log(items);
-    return items;
-  }
+  // async fetchItemInstances() {
+  //   let items;
+  //   // fetch items
+  //   await fetch(`/item/${this.props.location.state.name}`)
+  //     .then(res => res.json())
+  //     .then(json => {
+  //       items = json.data;
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  //   console.log(items);
+  //   return items;
+  // }
 
   _onSelectColor(e) {
     console.log(e.value);
     this.setState({ selectedColor: e.value });
-    // this.state.selectedColor = e.value
     console.log(this.state.selectedColor);
   }
 
@@ -59,7 +60,6 @@ class Item extends Component {
   }
 
   _onSelectQts(e) {
-    //   console.
     this.setState({ selectedQts: e.target.value });
   }
 
@@ -88,17 +88,13 @@ class Item extends Component {
   }
 
   render() {
-    console.log("ITEM RENDERING");
     const src = "https://via.placeholder.com/250";
     const { colors, sizes, qts } = this.parseData();
-    console.log(colors, sizes, qts);
-    console.log(this.state);
-    // parse data
-    // colors, sizes, qtys based on current selected
 
     return (
       <div>
-        <Navbar />
+        {/* TODO: use history to get prev url */}
+        <Navbar prevUrl="/store" />
         <div className="container">
         <div className="item-container">
           {/* TODO: onclick for share icon */}

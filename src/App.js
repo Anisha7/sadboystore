@@ -5,6 +5,7 @@ import './App.css';
 import Home from './components/Home'
 import Store from './components/Store'
 import Item from './components/Item'
+import Cart from './components/Cart'
 
 class App extends Component {
 
@@ -23,6 +24,9 @@ class App extends Component {
                     <Item />
                   </Route> */}
                   <Route path="/item/:item" component={Item} />
+                  <Route path="/cart">
+                    <Cart />
+                  </Route>
               </Switch>
             </Router>
           </div>

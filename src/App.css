@@ -30,8 +30,16 @@ html, body, .App, .App-header, .App-intro>div {
   font-family: 'Red Hat Text', sans-serif;
 }
 
+#root {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
 .wrapper {
+  /* max-width: 450px; */
   height: 100%;
-  margin: 20px;
-  color: "#191A19";
+  margin: 30px;
+  color: #191A19;
 }

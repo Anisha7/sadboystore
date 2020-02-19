@@ -13,7 +13,9 @@ class Navbar extends Component {
     super(props);
     this.state = {
       redirectToHome: false,
-      redirectToCart: false
+      redirectToCart: false,
+      goBack: false,
+      prevUrl: "/",
     };
   }
 
@@ -22,13 +24,30 @@ class Navbar extends Component {
   }
 
   setRedirectToCart() {
-    console.log("Redirect to cart");
+    this.setState({ redirectToCart: true });
+  }
+
+  setGoBackToTrue() {
+    this.setState({ goBack : true });
   }
 
   render() {
+    if (this.props.prevUrl && this.state.prevUrl == "/") {
+      this.setState({prevUrl: this.props.prevUrl})
+    }
+
     if (this.state.redirectToHome) {
       return <Redirect to="/" />;
     }
+
+    if (this.state.redirectToCart) {
+      return <Redirect to="/cart" />;
+    }
+
+    if (this.state.goBack) {
+      return <Redirect to={this.state.prevUrl} />;
+    }
+
     return (
       <div className="navbar-container">
         <FontAwesomeIcon
@@ -41,7 +60,7 @@ class Navbar extends Component {
           className="icon"
           icon={faFrown}
           size="2x"
-          onClick={() => this.setRedirectToHome()}
+          onClick={() => this.setGoBackToTrue()}
         />
         <FontAwesomeIcon
           className="icon"
