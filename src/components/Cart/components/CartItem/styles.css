@@ -2,6 +2,16 @@
     display: flex
 }
 
+.cartitem-container .inline{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: baseline; not working*/
+}
+
+.cartitem-container .svg-inline--fa {
+    height: unset;
+}
+
 .cartitem-container img {
     width: 33vw;
     height: 33vw;

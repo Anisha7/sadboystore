@@ -3,11 +3,11 @@ import { Redirect } from "react-router";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
-import { fetchItemInstances } from '../../../../helpers/items'
+import { fetchItemInstances } from "../../../../helpers/items";
 
-import QuantityInput from '../../../QuantityInput';
+import QuantityInput from "../../../QuantityInput";
 import "./styles.css";
 
 class CartItem extends Component {
@@ -16,23 +16,28 @@ class CartItem extends Component {
     this.state = {
       item: [],
       redirect: false,
-      selectedColor: '',
-      selectedSize: '',
-      selectedQty: 0,
+      selectedColor: "",
+      selectedSize: "",
+      selectedQty: 0
     };
   }
 
   componentDidMount() {
-    const { color, size, qty } = this.props
-    console.log(this.props.qty)
+    const { color, size, qty } = this.props;
+    console.log(this.props.qty);
     fetchItemInstances().then(items => {
       this.setState({ item: items });
     });
 
-    this.setState({ selectedColor: color})
-    this.setState({ selectedSize: size})
-    this.setState({ selectedQty: qty})
-    console.log("setting state: ", this.state.selectedQty, this.state.selectedColor, this.state.selectedSize)
+    this.setState({ selectedColor: color });
+    this.setState({ selectedSize: size });
+    this.setState({ selectedQty: qty });
+    console.log(
+      "setting state: ",
+      this.state.selectedQty,
+      this.state.selectedColor,
+      this.state.selectedSize
+    );
   }
 
   _onSelectColor(e) {
@@ -59,36 +64,52 @@ class CartItem extends Component {
     const { cost, name } = this.props;
     // TODO: use parse data function here too
     // TESTING DATA
-    const colors = ["red", "blue"]
-    const sizes = ["small"]
+    const colors = ["red", "blue"];
+    const sizes = ["small"];
     // ENDS
 
     return (
       <div className="cartitem-container">
         <img src="https://via.placeholder.com/250" alt="" />
         <div className="content">
-            <p className="price">{'$' + cost.toFixed(2)}</p>
-            <p className="name">{name}</p>
-            <div className="flex">
-                <Dropdown
-                controlClassName="dropdown"
-                options={colors ? colors : []}
-                onChange={this._onSelectColor}
-                value={this.state.selectedColor}
-                placeholder="Select an option"
-                />
-                <Dropdown
-                controlClassName="dropdown"
-                options={sizes ? sizes : []}
-                onChange={this._onSelectSize}
-                value={this.state.selectedSize}
-                placeholder="Select an option"
-                // disabled is true if color is not selected
-                // TODO: FIX, not working
-                disabled={this.state.color === "color"}
-                />
+          <div className="inline">
+            <p className="price">{"$" + cost.toFixed(2)}</p>
+            <FontAwesomeIcon
+              icon={faShareSquare}
+              size="1x"
+            />
           </div>
-          <QuantityInput updateState={(n) => this._onSelectQts(n)} qty={this.state.selectedQty} />
+          <p className="name">{name}</p>
+          <div className="flex">
+            <Dropdown
+              controlClassName="dropdown"
+              options={colors ? colors : []}
+              onChange={this._onSelectColor}
+              value={this.state.selectedColor}
+              placeholder="Select an option"
+            />
+            <Dropdown
+              controlClassName="dropdown"
+              options={sizes ? sizes : []}
+              onChange={this._onSelectSize}
+              value={this.state.selectedSize}
+              placeholder="Select an option"
+              // disabled is true if color is not selected
+              // TODO: FIX, not working
+              disabled={this.state.color === "color"}
+            />
+          </div>
+          <div className="inline">
+            
+            <div><QuantityInput
+              updateState={n => this._onSelectQts(n)}
+              qty={this.state.selectedQty}
+            /></div>
+            <FontAwesomeIcon
+              icon={faTrashAlt}
+              size="1x"
+            />
+          </div>
         </div>
       </div>
     );
