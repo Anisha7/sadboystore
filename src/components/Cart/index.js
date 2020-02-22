@@ -6,7 +6,6 @@ import Navbar from "../Navbar";
 import CartItem from "./components/CartItem";
 import CartSummary from "./components/CartSummary";
 
-
 import "react-dropdown/style.css";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
@@ -33,7 +32,7 @@ class Cart extends Component {
 
   async fetchItemIds() {
     // get item ids stored on local storage
-    return [0]
+    return [0];
   }
 
   async fetchItemInstances(itemIds) {
@@ -41,7 +40,7 @@ class Cart extends Component {
     // fetch the item
     // add cost to total
     // return items and subtotal cost
-    return { items: [], subtotal: 0}
+    return { items: [], subtotal: 0 };
   }
 
   deleteItem(id) {
@@ -110,6 +109,7 @@ class Cart extends Component {
               )
             : null} */}
         </div>
+        <hr />
         <div>
           <CartSummary subtotal={this.state.total} />
         </div>

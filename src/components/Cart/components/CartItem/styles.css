@@ -1,5 +1,6 @@
 .cartitem-container {
-    display: flex
+    display: flex;
+    margin-bottom: 30px;
 }
 
 .cartitem-container .inline{
