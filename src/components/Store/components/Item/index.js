@@ -30,13 +30,11 @@ class Item extends Component {
   }
 
   redirectToItem(name) {
-    console.log("here")
     // access prop this.props.location.state.name
     this.setState({redirect: true})
   }
 
   render() {
-    console.log(this.state.item[0])
     const { id, cost, name } = this.props;
     const src = "https://via.placeholder.com/250";
     // parse data
@@ -47,7 +45,7 @@ class Item extends Component {
             state: { name: name }
         }}/>
     }
-    console.log("item ", this.state.item )
+    
     return (
       <div className="item-container">
         {/* TODO: onclick for share icon */}
