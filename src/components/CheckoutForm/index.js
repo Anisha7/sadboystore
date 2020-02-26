@@ -6,6 +6,7 @@ import Navbar from "../Navbar";
 
 import "./styles.css";
 import "../../commonStyles.css";
+import "./checkbox.css"
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -117,6 +118,17 @@ class CheckoutForm extends Component {
             required
           />
           {/* TODO: checkbox */}
+          <div className="checkbox">
+            <input
+              type="checkbox"
+              id="textOrderStatusCheckbox"
+              name="textOrderStatusCheckbox"
+              value="textOrderStatus"
+            />
+            <span>
+              Recieve order status via text
+            </span>
+          </div>
         </div>
         <div className="section">
           {/* TODO */}
