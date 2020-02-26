@@ -9,6 +9,7 @@ import { fetchItemInstances } from "../../../../helpers/items";
 
 import QuantityInput from "../../../QuantityInput";
 import "./styles.css";
+import "../../../../commonStyles.css"
 
 class CartItem extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class CartItem extends Component {
         <img src="https://via.placeholder.com/250" alt="" />
         <div className="content">
           <div className="inline">
-            <p className="price">{"$" + cost.toFixed(2)}</p>
+            <p className="heading">{"$" + cost.toFixed(2)}</p>
             <FontAwesomeIcon
               icon={faShareSquare}
               size="1x"

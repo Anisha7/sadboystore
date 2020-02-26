@@ -3,12 +3,6 @@
     margin-bottom: 30px;
 }
 
-.cartitem-container .inline{
-    display: flex;
-    justify-content: space-between;
-    /* align-items: baseline; not working*/
-}
-
 .cartitem-container .svg-inline--fa {
     height: unset;
 }

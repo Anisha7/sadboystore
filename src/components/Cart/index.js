@@ -11,6 +11,7 @@ import "react-dropdown/style.css";
 // import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles.css";
+import CheckoutButton from "./components/CheckoutButton";
 
 class Cart extends Component {
   constructor(props) {
@@ -112,6 +113,9 @@ class Cart extends Component {
         <hr />
         <div>
           <CartSummary subtotal={this.state.total} />
+        </div>
+        <div>
+          <CheckoutButton onClick={() => this.setState({redirect: true})} />
         </div>
       </div>
     );

@@ -1,0 +1,8 @@
+.checkoutbutton-container {
+    margin: 30px 10px 15px;
+    padding: 10px 30px;
+    width: calc(100% - 10px);
+    font-weight: medium;
+    font-size: 18px;
+    border: 1px solid #202020;
+}

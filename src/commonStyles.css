@@ -19,3 +19,17 @@ button {
     left: 30px;
     cursor: pointer;
 }
+
+.heading {
+    font-size: 20px;
+    margin: 0 0 0 10px;
+}
+
+.inline {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bold {
+    font-weight: bolder;
+}
