@@ -4,7 +4,7 @@ import "react-dropdown/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
-import { addItem, getItems, removeItem } from '../../../../helpers/storage'
+import { addItem } from '../../../../helpers/storage'
 import { fetchItemInstances } from '../../../../helpers/items'
 
 import "./styles.css";
@@ -45,7 +45,7 @@ class Item extends Component {
             state: { name: name }
         }}/>
     }
-    
+
     return (
       <div className="item-container">
         {/* TODO: onclick for share icon */}
