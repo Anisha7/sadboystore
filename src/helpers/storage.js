@@ -47,15 +47,30 @@ export const addItem = item => {
         }
     });
 
+    // add item
     if (!found) {
         items.push(item)
     }
 
-    localStorage.setItem('cart', items)
+    // update storage
+    localStorage.setItem('cart', decodeDataToString(items))
 };
 
 // Removes given item from storage
-export const removeItem = item => {};
+export const removeItem = item => {
+    const items = getItems()
+    
+    // remove item
+    items.forEach((curr, i) => {
+        if (curr.id === item.id) {
+            items.splice(i, 1) // deletes item from array
+            // update storage
+            localStorage.setItem('cart', decodeDataToString(items))
+            break
+        }
+    });
+    
+};
 
 // Updates given item in storage
 export const updateItem = item => {};
