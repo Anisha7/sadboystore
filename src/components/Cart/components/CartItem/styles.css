@@ -3,6 +3,10 @@
     margin-bottom: 30px;
 }
 
+.cartitem-container .heading {
+    margin-left: 10px;
+}
+
 .cartitem-container .svg-inline--fa {
     height: unset;
 }

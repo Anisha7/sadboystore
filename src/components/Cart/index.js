@@ -24,6 +24,7 @@ class Cart extends Component {
 
   componentDidMount() {
     this.fetchItemIds().then(itemIds => {
+      console.log(itemIds)
       this.fetchItemInstances(itemIds).then(({items, subtotal}) => {
         console.log(items, subtotal)
         this.setState({ items: items, subtotal: subtotal });
