@@ -42,7 +42,7 @@ export async function fetchItemInstances(name) {
     // return data
 
     let items;
-    await fetch(`/item/${name}`)
+    await fetch(`/item/name/${name}`)
       .then(res => res.json())
       .then(json => {
         items = json.data;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Dropdown from "react-dropdown";
+import { withRouter } from 'react-router-dom'
 import Navbar from "../Navbar";
 import "react-dropdown/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +8,7 @@ import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
 import { fetchItemInstances } from '../../helpers/items'
 import "./styles.css";
+import QuantityInput from "../QuantityInput";
 
 class Item extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class Item extends Component {
     this.state = {
       selectedColor: "color",
       selectedSize: "size",
-      selectedQts: null,
+      selectedQts: 0,
       item: [],
       name: "",
       cost: 0
@@ -26,28 +28,12 @@ class Item extends Component {
   }
 
   componentDidMount() {
-    // TODO: test this works
-    fetchItemInstances(this.props.name).then(items => {
+    fetchItemInstances(this.props.location.state.name).then(items => {
       this.setState({ item: items });
       this.setState({ name: items[0].name });
       this.setState({ cost: items[0].cost });
     });
   }
-
-  // async fetchItemInstances() {
-  //   let items;
-  //   // fetch items
-  //   await fetch(`/item/${this.props.location.state.name}`)
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       items = json.data;
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  //   console.log(items);
-  //   return items;
-  // }
 
   _onSelectColor(e) {
     console.log(e.value);
@@ -59,8 +45,8 @@ class Item extends Component {
     this.setState({ selectedSize: e.value });
   }
 
-  _onSelectQts(e) {
-    this.setState({ selectedQts: e.target.value });
+  _onSelectQts(val) {
+    this.setState({ selectedQts: val });
   }
 
   parseData() {
@@ -129,25 +115,7 @@ class Item extends Component {
               disabled={this.state.color === "color"}
             />
           </div>
-          {/* TODO: change this input type number */}
-          {/* <Dropdown
-          controlClassName="dropdown"
-          options={qts ? qts : []}
-          onChange={this._onSelectQts}
-          value={this.state.selectedQts}
-          placeholder="Select an option"
-          // disabled if color and size are not selected
-          // TODO: FIX, not working
-          disabled={this.state.color === "color" || this.state.size === "size"}
-        /> */}
-          {/* TODO: fix onChange */}
-          <input
-            onChange={e => this._onSelectQts(e)}
-            placeholder={"qty"}
-            value={this.state.selectedQts}
-            className="dropdown"
-            type="number"
-          ></input>
+          <QuantityInput updateState={val => this._onSelectQts(val)} qty={this.state.selectedQts} />
           {/* TODO: add disabled classname if all properties are not selected */}
           <button
             //   onClick={() => this.addItemToCart()}
@@ -163,4 +131,4 @@ class Item extends Component {
   }
 }
 
-export default Item;
+export default withRouter(Item);

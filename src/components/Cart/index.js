@@ -24,8 +24,9 @@ class Cart extends Component {
 
   componentDidMount() {
     this.fetchItemIds().then(itemIds => {
-      this.fetchItemInstances(itemIds).then((items, cost) => {
-        this.setState({ items: items, subtotal: cost });
+      this.fetchItemInstances(itemIds).then(({items, subtotal}) => {
+        console.log(items, subtotal)
+        this.setState({ items: items, subtotal: subtotal });
       });
     });
   }
@@ -50,17 +51,18 @@ class Cart extends Component {
   render() {
     // TODO: update passed in items to be 
     // { total: "$00.00", shipping:"$00.00", items: [] }
-    const items = {
-      total: this.state.subtotal,
-      shipping: "TBD",
-      items: this.state.items
-    }
     if (this.state.redirect) {
+      console.log(this.state.subtotal)
+      const items = {
+        total: this.state.subtotal,
+        shipping: "TBD",
+        items: this.state.items
+      }
       return (
-        <Redirect
+        <Redirect push
           to={{
-            pathname: `${"/checkoutform"}`,
-            state: { items }
+            pathname: "/checkoutform",
+            state: { items: items }
           }}
         />
       );

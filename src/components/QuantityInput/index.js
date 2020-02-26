@@ -19,11 +19,11 @@ class QuantityInput extends Component {
 
   render() {
     return (
-      <div class="quantity buttons_added">
+      <div className="quantity buttons_added">
         <input
           type="button"
           value="-"
-          class="minus"
+          className="minus"
           onClick={() => this.subtract()}
         />
         <input
@@ -34,7 +34,7 @@ class QuantityInput extends Component {
           name="quantity"
           value={this.props.qty}
           title="Qty"
-          class="input-text qty text"
+          className="input-text qty text"
           size="4"
           pattern=""
           inputmode=""
@@ -42,7 +42,7 @@ class QuantityInput extends Component {
         <input
           type="button"
           value="+"
-          class="plus"
+          className="plus"
           onClick={() => this.add()}
         />
       </div>
