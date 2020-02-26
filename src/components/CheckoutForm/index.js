@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import "react-dropdown/style.css";
+import Dropdown from "react-dropdown";
 
 import Navbar from "../Navbar";
 
+import "react-dropdown/style.css";
 import "./styles.css";
 import "../../commonStyles.css";
 import "./checkbox.css"
@@ -28,6 +29,8 @@ class CheckoutForm extends Component {
   render() {
     console.log(this.props.location.state);
     const { total, shipping, items } = this.props.location.state.items;
+    const countries = ["USA"]
+    const states = ["CA", "WA"]
 
     return (
       <div className="checkoutform-container">
@@ -89,8 +92,24 @@ class CheckoutForm extends Component {
             onChange={e => this.setState({ city: e.target.value })}
             required
           />
-          <div className="inline">
-            {/* TODO: add dropdown for country and state */}
+          <div className="inline dropdown-section">
+            <Dropdown
+              className="dropdown"
+              controlClassName="inner-dropdown"
+              placeholderClassName='dropdown-placeholder'
+              options={countries}
+              onChange={e => this.setState({country: e.value})}
+              value={this.state.country}
+              placeholder="Country"
+            />
+            <Dropdown
+              className="dropdown"
+              controlClassName="inner-dropdown"
+              options={states}
+              onChange={e => this.setState({state: e.value})}
+              value={this.state.state}
+              placeholder="State"
+            />
             <input
               type="number"
               placeholder="Zip code"
