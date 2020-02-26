@@ -54,13 +54,13 @@ class Navbar extends Component {
           className="icon"
           icon={faArrowAltCircleLeft}
           size="2x"
-          onClick={() => this.setRedirectToHome()}
+          onClick={() => this.setGoBackToTrue()}
         />
         <FontAwesomeIcon
           className="icon"
           icon={faFrown}
           size="2x"
-          onClick={() => this.setGoBackToTrue()}
+          onClick={() => this.setRedirectToHome()}
         />
         <FontAwesomeIcon
           className="icon"

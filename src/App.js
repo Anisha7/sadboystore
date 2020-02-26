@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Store from './components/Store'
 import Item from './components/Item'
 import Cart from './components/Cart'
+import CheckoutForm from './components/CheckoutForm'
 
 class App extends Component {
 
@@ -26,6 +27,9 @@ class App extends Component {
                   <Route path="/item/:item" component={Item} />
                   <Route path="/cart">
                     <Cart />
+                  </Route>
+                  <Route path="/checkoutform">
+                    <CheckoutForm />
                   </Route>
               </Switch>
             </Router>

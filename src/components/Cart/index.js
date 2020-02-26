@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
-import Dropdown from "react-dropdown";
 
 import Navbar from "../Navbar";
 import CartItem from "./components/CartItem";
 import CartSummary from "./components/CartSummary";
+import CheckoutButton from "./components/CheckoutButton";
 
 import "react-dropdown/style.css";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles.css";
-import CheckoutButton from "./components/CheckoutButton";
 
 class Cart extends Component {
   constructor(props) {
@@ -49,12 +48,19 @@ class Cart extends Component {
   }
 
   render() {
+    // TODO: update passed in items to be 
+    // { total: "$00.00", shipping:"$00.00", items: [] }
+    const items = {
+      total: this.state.subtotal,
+      shipping: "TBD",
+      items: this.state.items
+    }
     if (this.state.redirect) {
       return (
         <Redirect
           to={{
-            pathname: `${"/checkout"}`,
-            state: { items: this.state.items }
+            pathname: `${"/checkoutform"}`,
+            state: { items }
           }}
         />
       );
@@ -112,7 +118,7 @@ class Cart extends Component {
         </div>
         <hr />
         <div>
-          <CartSummary subtotal={this.state.total} />
+          <CartSummary subtotal={this.state.subtotal} />
         </div>
         <div>
           <CheckoutButton onClick={() => this.setState({redirect: true})} />
