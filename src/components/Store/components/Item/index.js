@@ -4,6 +4,9 @@ import "react-dropdown/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
+import { addItem, getItems, removeItem } from '../../../../helpers/storage'
+import { fetchItemInstances } from '../../../../helpers/items'
+
 import "./styles.css";
 
 class Item extends Component {
@@ -16,30 +19,14 @@ class Item extends Component {
   }
 
   componentDidMount() {
-    this.fetchItemInstances().then(items => {
+    fetchItemInstances(this.props.name).then(items => {
+      console.log("found: ", items)
       this.setState({ item: items });
     });
   }
 
-  async fetchItemInstances() {
-    let items;
-    // fetch items
-    await fetch(`/item/${this.props.name}`)
-      .then(res => res.json())
-      .then(json => {
-        items = json.data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    console.log(items);
-    return items;
-  }
-
-  addItemToCart(itemId) {
-    console.log("Adding item to cart");
-    // TODO: check that color, size, and qty is chosen
-    // TODO: add item to cart
+  addItemToCart(id, name, qty) {
+    addItem({id, name, qty})
   }
 
   redirectToItem(name) {
@@ -49,7 +36,8 @@ class Item extends Component {
   }
 
   render() {
-    const { cost, name } = this.props;
+    console.log(this.state.item[0])
+    const { id, cost, name } = this.props;
     const src = "https://via.placeholder.com/250";
     // parse data
     // colors, sizes, qtys based on current selected
@@ -59,7 +47,7 @@ class Item extends Component {
             state: { name: name }
         }}/>
     }
-
+    console.log("item ", this.state.item )
     return (
       <div className="item-container">
         {/* TODO: onclick for share icon */}
@@ -73,7 +61,7 @@ class Item extends Component {
         </div>
         {/* TODO: add disabled classname if all properties are not selected */}
         <button
-          //   onClick={() => this.addItemToCart()}
+          onClick={() => this.addItemToCart(this.state.item[0].public_id, name, 1)}
           className="addToCart"
         >
           <p>ADD TO CART</p>

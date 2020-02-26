@@ -12,7 +12,6 @@ class Store extends Component {
     };
 
     this.componentDidMount = this.componentDidMount.bind(this)
-    // this.fetchItems = this.fetchItems.bind(this);
   }
 
   componentDidMount() {
@@ -20,21 +19,6 @@ class Store extends Component {
         this.setState({items: items})
     });
   }
-
-  // async fetchItems() {
-  //   let items;
-  //   // fetch items
-  //   await fetch("/item/")
-  //       .then(res => res.json())
-  //       .then(json => {
-  //           items = json.data
-  //       })
-  //       .catch(err => {
-  //           console.log(err)
-  //       })
-  //   console.log(items)
-  //   return items;
-  // }
 
   render() {
     console.log(this.state.items)
@@ -46,7 +30,7 @@ class Store extends Component {
                 ({ public_id, name, piece, cost, color, size, avalaible, src}, i) => (
                   <Item
                     key={`${i}-${name}`}
-                    public_id={public_id}
+                    id={public_id}
                     name={name}
                     // piece={piece}
                     cost={cost}
