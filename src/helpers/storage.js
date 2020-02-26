@@ -72,8 +72,8 @@ export const removeItem = item => {
     
 };
 
-// Updates given item in storage
-export const updateItem = item => {};
-
-// Gets items in storage
-export const getItems = () => {};
+// Gets items in storage and formats them to usable data
+export const getItems = () => {
+    const items = localStorage.getItem('cart')
+    return parseStringData(items)
+};
