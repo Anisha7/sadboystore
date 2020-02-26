@@ -43,6 +43,6 @@ html, body, .App, .App-header, .App-intro>div {
 .wrapper {
   /* max-width: 450px; */
   height: 100%;
-  margin: 30px;
+  margin: 0 30px 30px;
   color: #191A19;
 }
