@@ -5,11 +5,13 @@ import Navbar from "../Navbar";
 import CartItem from "./components/CartItem";
 import CartSummary from "./components/CartSummary";
 import CheckoutButton from "./components/CheckoutButton";
+import { getItems, removeItem } from "../../helpers/storage";
+import { fetchItemInstances } from "../../helpers/items";
 
-import "react-dropdown/style.css";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
+import "react-dropdown/style.css";
 import "./styles.css";
 
 class Cart extends Component {
@@ -23,44 +25,56 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    this.fetchItemIds().then(itemIds => {
-      console.log(itemIds)
-      this.fetchItemInstances(itemIds).then(({items, subtotal}) => {
-        console.log(items, subtotal)
-        this.setState({ items: items, subtotal: subtotal });
+    this.setItemsFromLocalStorage()
+  }
+
+  setItemsFromLocalStorage() {
+    const items = [];
+    // convert getItems return to a dictionary of id (key) -> qty (value)
+    getItems().map(({ name, id, qty }) => {
+      fetchItemInstances(name).then(el => {
+        el = el.filter(({ public_id }) => public_id === id)[0];
+        el = { ...el, qty };
+        items.push(el);
       });
-    });
+    })
+    
+    console.log(items);
+    this.setState({ items });
+
+    // [{name, id, qty}]
+    // return [
+    //   {
+
+    //   }
+    // ]
+    
   }
 
-  async fetchItemIds() {
-    // get item ids stored on local storage
-    return [0];
-  }
-
-  async fetchItemInstances(itemIds) {
-    // for all item (Ids, qty),
-    // fetch the item
-    // add cost to total
-    // return items and subtotal cost
-    return { items: [], subtotal: 0 };
-  }
-
-  deleteItem(id) {
-    // delete item from local storage and from state items array
+  deleteItem(id, name, qty) {
+    // delete item from local storage 
+    removeItem({id, name, qty})
+    // delete item from state items array
+    // --> reassigning items from updated local storage
+    this.setItemsFromLocalStorage()
   }
 
   render() {
-    // TODO: update passed in items to be 
+    const items = this.state.items;
+    console.log(items, items.length);
+    // console.log(this.state.items.length)
+    // TODO: update passed in items to be
     // { total: "$00.00", shipping:"$00.00", items: [] }
     if (this.state.redirect) {
-      console.log(this.state.subtotal)
+      console.log(this.state.subtotal);
       const items = {
         total: this.state.subtotal,
         shipping: "TBD",
         items: this.state.items
-      }
+      };
       return (
-        <Redirect push
+        <Redirect
+          push
           to={{
             pathname: "/checkoutform",
             state: { items: items }
@@ -75,7 +89,7 @@ class Cart extends Component {
         <Navbar prevUrl="/store" />
         <div>
           {/* TESTING */}
-          <CartItem
+          {/* <CartItem
             public_id="012"
             name="Item"
             // piece={piece}
@@ -85,46 +99,32 @@ class Cart extends Component {
             // avalaible={avalaible}
             // src={src}
             qty={6}
-          />
+          /> */}
           {/* TESTING ENDS */}
-          {/* {this.state.items
-            ? this.state.items.map(
-                (
-                  {
-                    public_id,
-                    name,
-                    piece,
-                    cost,
-                    color,
-                    size,
-                    avalaible,
-                    src,
-                    qty
-                  },
-                  i
-                ) => (
-                  <CartItem
-                    key={`${i}-${name}`}
-                    public_id={public_id}
-                    name={name}
-                    // piece={piece}
-                    cost={cost}
-                    color={color}
-                    size={size}
-                    // avalaible={avalaible}
-                    // src={src}
-                    qty={qty}
-                  />
-                )
-              )
-            : null} */}
+          {this.state.items.map(({ public_id, name, // category,
+            cost, color, size, // avalaible,
+            //src,
+            qty }, i) => (
+            <CartItem
+              key={`${i}-${name}`}
+              public_id={public_id}
+              name={name}
+              // category={category}
+              cost={cost}
+              color={color}
+              size={size}
+              // avalaible={avalaible}
+              // src={src}
+              qty={qty}
+            />
+          ))}
         </div>
         <hr />
         <div>
           <CartSummary subtotal={this.state.subtotal} />
         </div>
         <div>
-          <CheckoutButton onClick={() => this.setState({redirect: true})} />
+          <CheckoutButton onClick={() => this.setState({ redirect: true })} />
         </div>
       </div>
     );

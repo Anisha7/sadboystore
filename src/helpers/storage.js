@@ -12,14 +12,12 @@ const arrayStringToArray = s => {
         return []
     }
     const arr = s.split('}')
-    console.log(arr)
     arr.pop()
-    console.log(arr)
     const result = arr.map(item => {
-        if (item[0] == ',') {
+        if (item[0] === ',') {
             item = item.slice(0, 1)
         }
-        if (item[item.length - 1] == ',') {
+        if (item[item.length - 1] === ',') {
             item = item.slice(item.length - 1, 1)
         }
         return item + "}"
@@ -34,7 +32,6 @@ const objectToString = obj => JSON.stringify(obj);
 // Converts the object disguised as
 // a string to a javascript object
 const objectStringToObject = s => {
-    console.log(s)
     return JSON.parse(s)
 };
 
@@ -43,7 +40,6 @@ const objectStringToObject = s => {
 const parseStringData = (s) => {
     // return JSON.parse(s)
     const arr = arrayStringToArray(s)
-    console.log(arr)
     return arr.map(objString => objectStringToObject(objString))
 }
 
@@ -74,7 +70,6 @@ export const addItem = item => {
     if (!found) {
         items.push(item)
     }
-    console.log("Setting local storage in addItem")
     // update storage
     localStorage.setItem('cart', decodeDataToString(items))
 };
@@ -100,3 +95,5 @@ export const getItems = () => {
     const items = localStorage.getItem('cart')
     return parseStringData(items)
 };
+
+// TODO: Update item function

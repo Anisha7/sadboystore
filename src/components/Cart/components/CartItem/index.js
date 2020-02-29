@@ -24,9 +24,9 @@ class CartItem extends Component {
   }
 
   componentDidMount() {
-    const { color, size, qty } = this.props;
+    const { color, size, qty, name } = this.props;
     console.log(this.props.qty);
-    fetchItemInstances().then(items => {
+    fetchItemInstances(name).then(items => {
       this.setState({ item: items });
     });
 
@@ -62,6 +62,7 @@ class CartItem extends Component {
   }
 
   render() {
+    console.log("HEREEEEE")
     const { cost, name } = this.props;
     // TODO: use parse data function here too
     // TESTING DATA

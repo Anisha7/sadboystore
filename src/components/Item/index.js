@@ -5,7 +5,7 @@ import "react-dropdown/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
-import { addItem, getItems, removeItem } from "../../helpers/storage";
+import { addItem } from "../../helpers/storage";
 import { fetchItemInstances } from "../../helpers/items";
 import QuantityInput from "../QuantityInput";
 import Navbar from "../Navbar";
