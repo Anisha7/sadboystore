@@ -96,4 +96,27 @@ export const getItems = () => {
     return parseStringData(items)
 };
 
-// TODO: Update item function
+// TODO: Test this function
+// Input: old_id, new_item = {name, qty, id}
+export const updateItem = (old_id, new_item) => {
+    // Get items from local storage
+    const items = getItems()
+    const old_index = -1
+    // Find index for item with old_id
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].id === old_id) {
+            old_index = i
+            break
+        }
+    }
+    if (old_index === -1 ) {
+        // should never hit this case though logically
+        // item doesn't exist, just append
+        items.push(new_item)
+    } else {
+        // Replace with new_item
+        items[old_index] = new_item
+    }
+    // Push to local storage
+    localStorage.setItem('cart', decodeDataToString(items))
+}

@@ -35,7 +35,7 @@ class Item extends Component {
   }
 
   render() {
-    const { id, cost, name } = this.props;
+    const { name } = this.props; // id, cost, 
     const src = "https://via.placeholder.com/250";
     // parse data
     // colors, sizes, qtys based on current selected

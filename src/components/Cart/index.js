@@ -28,15 +28,17 @@ class Cart extends Component {
     this.setItemsFromLocalStorage()
   }
 
+  // TODO using new route from backend
+  // give backend a dictionary id -> qty
   setItemsFromLocalStorage() {
     const items = [];
     // convert getItems return to a dictionary of id (key) -> qty (value)
-    getItems().map(({ name, id, qty }) => {
-      fetchItemInstances(name).then(el => {
-        el = el.filter(({ public_id }) => public_id === id)[0];
-        el = { ...el, qty };
-        items.push(el);
-      });
+    getItems().forEach(({ name, id, qty }) => {
+      // fetchItemInstances(name).then(el => {
+      //   el = el.filter(({ public_id }) => public_id === id)[0];
+      //   el = { ...el, qty };
+      //   items.push(el);
+      // });
     })
     
     console.log(items);
@@ -116,6 +118,7 @@ class Cart extends Component {
               // avalaible={avalaible}
               // src={src}
               qty={qty}
+              updateItemState={() => this.setItemsFromLocalStorage()}
             />
           ))}
         </div>

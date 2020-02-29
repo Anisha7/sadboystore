@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 
 import { fetchItemInstances } from "../../../../helpers/items";
+import { updateItem } from "../../../../helpers/storage";
 
 import QuantityInput from "../../../QuantityInput";
 import "./styles.css";
@@ -59,6 +60,24 @@ class CartItem extends Component {
     this.setState({ selectedQty: value });
     // TODO: update local storage with this new item
     // TODO: update items state array with this new item
+  }
+
+  _updateCartItem() {
+    const { public_id, updateItemState, name  } = this.props;
+    // Find new id for selected item using this.state.item
+    const new_item_arr = this.state.item.filter(item => {
+      return item.public_id === public_id
+    })
+    if (new_item_arr.length === 0) {
+      // item not found, error
+    }
+    const new_id = new_item_arr[0].public_id
+    // Update item on local storage ({name, qty, id})
+    updateItem({
+      name, qty: this.state.selectedQty, id: new_id
+    })
+    // Update item state
+    updateItemState()
   }
 
   render() {

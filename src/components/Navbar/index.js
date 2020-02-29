@@ -32,7 +32,7 @@ class Navbar extends Component {
   }
 
   render() {
-    if (this.props.prevUrl && this.state.prevUrl == "/") {
+    if (this.props.prevUrl && this.state.prevUrl === "/") {
       this.setState({prevUrl: this.props.prevUrl})
     }
 
