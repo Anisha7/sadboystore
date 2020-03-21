@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
 import Navbar from "../Navbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
@@ -23,7 +24,7 @@ class Confirmation extends Component {
           <p>Confirmation number: </p>
           <p>{confirmationNumber}</p>
           <a href="">track your order</a>
-          <button>CONTINUE SHOPPING</button>
+          <button><Link to="/store">CONTINUE SHOPPING</Link></button>
         </div>
       </div>
     );
