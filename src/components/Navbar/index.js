@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router"
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,40 +13,15 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectToHome: false,
-      redirectToCart: false,
-      goBack: false,
       prevUrl: "/",
     };
   }
 
-  setRedirectToHome() {
-    this.setState({ redirectToHome: true });
-  }
-
-  setRedirectToCart() {
-    this.setState({ redirectToCart: true });
-  }
-
-  setGoBackToTrue() {
-    this.setState({ goBack : true });
-  }
-
   render() {
+    console.log(this.props.history, this.props.location)
+    const { history } = this.props
     if (this.props.prevUrl && this.state.prevUrl === "/") {
       this.setState({prevUrl: this.props.prevUrl})
-    }
-
-    if (this.state.redirectToHome) {
-      return <Redirect to="/" />;
-    }
-
-    if (this.state.redirectToCart) {
-      return <Redirect to="/cart" />;
-    }
-
-    if (this.state.goBack) {
-      return <Redirect to={this.state.prevUrl} />;
     }
 
     return (
@@ -54,23 +30,23 @@ class Navbar extends Component {
           className="icon"
           icon={faArrowAltCircleLeft}
           size="2x"
-          onClick={() => this.setGoBackToTrue()}
+          onClick={() => history.push(this.state.prevUrl)} // this.setGoBackToTrue()}
         />
         <FontAwesomeIcon
           className="icon"
           icon={faFrown}
           size="2x"
-          onClick={() => this.setRedirectToHome()}
+          onClick={() => history.push('/')}
         />
         <FontAwesomeIcon
           className="icon"
           icon={faShoppingCart}
           size="2x"
-          onClick={() => this.setRedirectToCart()}
+          onClick={() => history.push('/cart')}
         />
       </div>
     );
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
