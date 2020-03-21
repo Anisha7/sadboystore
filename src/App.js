@@ -7,6 +7,7 @@ import Store from './components/Store'
 import Item from './components/Item'
 import Cart from './components/Cart'
 import CheckoutForm from './components/CheckoutForm'
+import Confirmation from './components/Confirmation'
 
 class App extends Component {
 
@@ -30,6 +31,9 @@ class App extends Component {
                   </Route>
                   <Route path="/checkoutform">
                     <CheckoutForm />
+                  </Route>
+                  <Route path="/confirmation">
+                    <Confirmation />
                   </Route>
               </Switch>
             </Router>

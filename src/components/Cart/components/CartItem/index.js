@@ -69,7 +69,8 @@ class CartItem extends Component {
       return item.public_id === public_id
     })
     if (new_item_arr.length === 0) {
-      // item not found, error
+      // item
+      // not found, error
     }
     const new_id = new_item_arr[0].public_id
     // Update item on local storage ({name, qty, id})
