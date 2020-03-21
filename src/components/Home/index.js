@@ -1,28 +1,15 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFrown } from '@fortawesome/free-regular-svg-icons'
 
 import './styles.css';
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            redirectToStore: false
-        }
-    }
-
-    setRedirectToStore() {
-        this.setState({redirectToStore: true})
-    }
-
     render() {
-        if (this.state.redirectToStore) {
-            return <Redirect to="/store" />
-        }
+        const { history } = this.props
         return (
-        <div className="home-container" onClick={() => this.setRedirectToStore()}>
+        <div className="home-container" onClick={() => history.push('/store')}>
             <div>
                 <FontAwesomeIcon className="icon" icon={ faFrown } size="8x" />
             </div>
@@ -32,4 +19,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default withRouter(Home);

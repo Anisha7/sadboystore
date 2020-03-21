@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router"
-import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowAltCircleLeft,
@@ -13,15 +12,15 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      prevUrl: "/",
+      prevUrl: "/"
     };
   }
 
   render() {
-    console.log(this.props.history, this.props.location)
-    const { history } = this.props
+    console.log(this.props.history, this.props.location);
+    const { history } = this.props;
     if (this.props.prevUrl && this.state.prevUrl === "/") {
-      this.setState({prevUrl: this.props.prevUrl})
+      this.setState({ prevUrl: this.props.prevUrl });
     }
 
     return (
@@ -36,13 +35,13 @@ class Navbar extends Component {
           className="icon"
           icon={faFrown}
           size="2x"
-          onClick={() => history.push('/')}
+          onClick={() => history.push("/")}
         />
         <FontAwesomeIcon
           className="icon"
           icon={faShoppingCart}
           size="2x"
-          onClick={() => history.push('/cart')}
+          onClick={() => history.push("/cart")}
         />
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router";
+import { Redirect, withRouter } from "react-router";
 
 import Navbar from "../Navbar";
 import CartItem from "./components/CartItem";
@@ -25,7 +25,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    this.setItemsFromLocalStorage()
+    this.setItemsFromLocalStorage();
   }
 
   // TODO using new route from backend
@@ -39,8 +39,8 @@ class Cart extends Component {
       //   el = { ...el, qty };
       //   items.push(el);
       // });
-    })
-    
+    });
+
     console.log(items);
     this.setState({ items });
 
@@ -50,15 +50,14 @@ class Cart extends Component {
 
     //   }
     // ]
-    
   }
 
   deleteItem(id, name, qty) {
-    // delete item from local storage 
-    removeItem({id, name, qty})
+    // delete item from local storage
+    removeItem({ id, name, qty });
     // delete item from state items array
     // --> reassigning items from updated local storage
-    this.setItemsFromLocalStorage()
+    this.setItemsFromLocalStorage();
   }
 
   render() {
@@ -103,9 +102,7 @@ class Cart extends Component {
             qty={6}
           /> */}
           {/* TESTING ENDS */}
-          {this.state.items.map(({ public_id, name, // category,
-            cost, color, size, // avalaible,
-            //src,
+          {this.state.items.map(({ public_id, name, cost, color, size, //src, // category, // avalaible,
             qty }, i) => (
             <CartItem
               key={`${i}-${name}`}
@@ -127,11 +124,24 @@ class Cart extends Component {
           <CartSummary subtotal={this.state.subtotal} />
         </div>
         <div>
-          <CheckoutButton onClick={() => this.setState({ redirect: true })} />
+          <CheckoutButton
+            onClick={() => {
+              console.log(this.state.subtotal);
+              const items = {
+                total: this.state.subtotal,
+                shipping: "TBD",
+                items: this.state.items
+              };
+              return this.props.history.push({
+                pathname: "/checkoutform",
+                state: { items: items }
+              });
+            }}
+          />
         </div>
       </div>
     );
   }
 }
 
-export default Cart;
+export default withRouter(Cart);
