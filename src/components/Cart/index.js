@@ -19,7 +19,6 @@ class Cart extends Component {
     super(props);
     this.state = {
       items: [],
-      redirect: false,
       subtotal: 0
     };
   }
@@ -66,23 +65,6 @@ class Cart extends Component {
     // console.log(this.state.items.length)
     // TODO: update passed in items to be
     // { total: "$00.00", shipping:"$00.00", items: [] }
-    if (this.state.redirect) {
-      console.log(this.state.subtotal);
-      const items = {
-        total: this.state.subtotal,
-        shipping: "TBD",
-        items: this.state.items
-      };
-      return (
-        <Redirect
-          push
-          to={{
-            pathname: "/checkoutform",
-            state: { items: items }
-          }}
-        />
-      );
-    }
 
     return (
       <div className="item-container">
